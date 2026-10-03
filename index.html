@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
+    <meta name="theme-color" content="#02031d" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="description" content="Handa Pilipinas Resilient Four augmented reality experience" />
+    <title>Resilient Four AR Experience</title>
+  </head>
+  <body>
+    <main id="app">
+      <section id="landing-screen" class="screen landing-screen" aria-label="Resilient Four AR Experience">
+        <div class="landing-screen__shade" aria-hidden="true"></div>
+        <div class="landing-screen__action">
+          <button id="start-button" class="primary-button" type="button">Start Experience</button>
+        </div>
+      </section>
+
+      <section id="ar-screen" class="screen ar-screen" aria-label="Augmented reality camera" hidden>
+        <div id="ar-container" class="ar-container"></div>
+
+        <button
+          id="sound-button"
+          class="sound-button"
+          type="button"
+          aria-label="Enable video sound"
+          aria-pressed="false"
+          hidden
+        >
+          <span class="sound-button__icon" aria-hidden="true">🔇</span>
+          <span class="sound-button__label">Enable sound</span>
+        </button>
+
+        <div id="loading-overlay" class="status-overlay" role="status" aria-live="polite" hidden>
+          <span class="loader" aria-hidden="true"></span>
+          <p id="loading-message">Starting AR experience…</p>
+        </div>
+
+        <div id="scanner" class="scanner" role="status" aria-live="polite" hidden>
+          <span class="scanner__frame" aria-hidden="true"></span>
+          <p>Point your camera at the image</p>
+        </div>
+
+        <div id="error-panel" class="error-panel" role="alert" hidden>
+          <div class="error-panel__card">
+            <h1 id="error-title">Unable to start AR</h1>
+            <p id="error-message"></p>
+            <button id="retry-button" class="secondary-button" type="button">Try Again</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

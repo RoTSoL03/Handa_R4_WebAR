@@ -1,0 +1,244 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #02031d;
+  color: #fff;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+* { box-sizing: border-box; }
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+button { font: inherit; }
+button:focus-visible { outline: 3px solid #7ce0ff; outline-offset: 4px; }
+[hidden] { display: none !important; }
+
+.screen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.landing-screen {
+  isolation: isolate;
+  background: #02031d url("/assets/background/home-background.png") center center / cover no-repeat;
+}
+
+.landing-screen__shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, transparent 58%, rgba(0, 0, 16, 0.2) 72%, rgba(0, 0, 16, 0.76) 100%);
+}
+
+.landing-screen__action {
+  position: absolute;
+  inset-inline: 0;
+  bottom: max(28px, calc(env(safe-area-inset-bottom) + 20px));
+  display: flex;
+  justify-content: center;
+  padding-inline: max(24px, env(safe-area-inset-left)) max(24px, env(safe-area-inset-right));
+}
+
+.primary-button,
+.secondary-button {
+  min-height: 56px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.86rem;
+  font-weight: 750;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.primary-button {
+  width: min(100%, 340px);
+  padding: 0 28px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.1));
+  box-shadow: 0 14px 42px rgba(0, 0, 0, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(16px) saturate(135%);
+  -webkit-backdrop-filter: blur(16px) saturate(135%);
+  transition: transform 160ms ease, background-color 160ms ease;
+}
+
+.primary-button:active { transform: scale(0.975); }
+.primary-button:disabled, .secondary-button:disabled { cursor: wait; opacity: 0.58; }
+
+.ar-screen,
+.ar-container {
+  background: #000;
+}
+
+.ar-container,
+.ar-container > video,
+.ar-container > canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.ar-container > video { object-fit: cover !important; }
+.ar-container > video {
+  z-index: 0 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.ar-container > canvas {
+  z-index: 1 !important;
+  background: transparent !important;
+  pointer-events: none;
+}
+
+.ar-container > div { z-index: 2 !important; }
+
+.status-overlay,
+.error-panel,
+.scanner {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+
+.sound-button {
+  position: absolute;
+  top: max(16px, calc(env(safe-area-inset-top) + 10px));
+  right: max(16px, calc(env(safe-area-inset-right) + 10px));
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 15px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.54);
+  color: #fff;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.sound-button:active { transform: scale(0.97); }
+.sound-button__icon { font-size: 1rem; line-height: 1; }
+
+.status-overlay {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 18px;
+  padding: 28px;
+  background: radial-gradient(circle at center, rgba(10, 17, 60, 0.74), rgba(1, 2, 17, 0.96));
+  text-align: center;
+}
+
+.status-overlay p,
+.scanner p { margin: 0; font-size: 0.94rem; letter-spacing: 0.04em; }
+
+.loader {
+  width: 42px;
+  height: 42px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #1bb6ed;
+  border-radius: 50%;
+  animation: spin 0.85s linear infinite;
+}
+
+.scanner {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 24px;
+  padding: max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+  pointer-events: none;
+}
+
+.scanner__frame {
+  width: min(64vw, 290px);
+  aspect-ratio: 1.45;
+  border: 1px solid rgba(255, 255, 255, 0.52);
+  border-radius: 18px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12), inset 0 0 28px rgba(20, 177, 235, 0.08);
+  animation: breathe 2.4s ease-in-out infinite;
+}
+
+.scanner p {
+  padding: 10px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  text-shadow: 0 1px 2px #000;
+}
+
+.error-panel {
+  display: grid;
+  place-items: center;
+  padding: max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+  background: rgba(0, 0, 15, 0.78);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.error-panel__card {
+  width: min(100%, 410px);
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 24px;
+  background: rgba(13, 17, 48, 0.92);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+  text-align: center;
+}
+
+.error-panel h1 { margin: 0 0 12px; font-size: 1.35rem; }
+.error-panel p { margin: 0 0 24px; color: rgba(255, 255, 255, 0.78); line-height: 1.55; }
+
+.secondary-button {
+  min-width: 160px;
+  padding: 0 22px;
+  background: #0b9ed6;
+  border-color: #4bc7f3;
+}
+
+body.ar-active { overscroll-behavior: none; touch-action: none; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes breathe { 50% { opacity: 0.58; transform: scale(0.985); } }
+
+@media (orientation: landscape) and (max-height: 540px) {
+  .landing-screen { background-position: center 42%; }
+  .landing-screen__action { bottom: max(16px, calc(env(safe-area-inset-bottom) + 10px)); }
+  .primary-button { min-height: 48px; max-width: 290px; }
+  .scanner { gap: 12px; }
+  .scanner__frame { width: min(42vw, 250px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader, .scanner__frame { animation: none; }
+  .primary-button { transition: none; }
+}
